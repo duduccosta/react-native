@@ -8,21 +8,21 @@
  */
 
 import type * as React from 'react';
-import {Constructor} from '../../../types/private/Utilities';
-import {TimerMixin} from '../../../types/private/TimerMixin';
-import {Insets} from '../../../types/public/Insets';
-import {StyleProp} from '../../StyleSheet/StyleSheet';
-import {ViewStyle} from '../../StyleSheet/StyleSheetTypes';
+import { TimerMixin } from '../../../types/private/TimerMixin';
+import { Constructor } from '../../../types/private/Utilities';
+import { Insets } from '../../../types/public/Insets';
+import { StyleProp } from '../../StyleSheet/StyleSheet';
+import { ViewStyle } from '../../StyleSheet/StyleSheetTypes';
 import {
   GestureResponderEvent,
   LayoutChangeEvent,
   NativeSyntheticEvent,
   TargetedEvent,
 } from '../../Types/CoreEventTypes';
-import {AccessibilityProps} from '../View/ViewAccessibility';
-import {TouchableMixin} from './Touchable';
+import { AccessibilityProps } from '../View/ViewAccessibility';
+import { TouchableMixin } from './Touchable';
 
-export interface TouchableWithoutFeedbackPropsIOS {}
+export interface TouchableWithoutFeedbackPropsIOS { }
 
 export interface TouchableWithoutFeedbackPropsAndroid {
   /**
@@ -38,8 +38,8 @@ export interface TouchableWithoutFeedbackPropsAndroid {
  */
 export interface TouchableWithoutFeedbackProps
   extends TouchableWithoutFeedbackPropsIOS,
-    TouchableWithoutFeedbackPropsAndroid,
-    AccessibilityProps {
+  TouchableWithoutFeedbackPropsAndroid,
+  AccessibilityProps {
   children?: React.ReactNode | undefined;
 
   /**
@@ -109,6 +109,22 @@ export interface TouchableWithoutFeedbackProps
   onPressOut?: ((event: GestureResponderEvent) => void) | undefined;
 
   /**
+   * Called when the touch is pressed for X times
+  */
+  onMultiPress?: ((event: GestureResponderEvent) => void) | undefined;
+
+  /**
+   * How many click required to onMultiPress event.
+   * Default: 3
+   */
+  multiPressClicks?: number;
+
+  /**
+   * 
+   */
+
+
+  /**
    * //FIXME: not in doc but available in examples
    */
   style?: StyleProp<ViewStyle> | undefined;
@@ -136,8 +152,8 @@ export interface TouchableWithoutFeedbackProps
  *
  * @see https://reactnative.dev/docs/touchablewithoutfeedback
  */
-declare class TouchableWithoutFeedbackComponent extends React.Component<TouchableWithoutFeedbackProps> {}
+declare class TouchableWithoutFeedbackComponent extends React.Component<TouchableWithoutFeedbackProps> { }
 declare const TouchableWithoutFeedbackBase: Constructor<TimerMixin> &
   Constructor<TouchableMixin> &
   typeof TouchableWithoutFeedbackComponent;
-export class TouchableWithoutFeedback extends TouchableWithoutFeedbackBase {}
+export class TouchableWithoutFeedback extends TouchableWithoutFeedbackBase { }
